@@ -1,34 +1,37 @@
 .Container {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 40px;
+  width: 100vw;
+  z-index: 99;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 300px;
-  transition: all 300ms;
+  justify-content: space-between;
 }
 
-.Date {
-  height: 100px;
-  line-height: 100px;
-  display: flex;
-  justify-content: center;
+.Container p {
+  color: #fff;
+  margin: 0;
 }
 
-.Date span {
-  color: rgb(255, 255, 255);
-}
-
-.Month,
-.Time {
-  font-size: 2rem;
+.Container .Time {
+  font-size: 26px;
   font-weight: bold;
 }
 
-.Divider {
-  display: inline-block;
-  width: 1px;
-  height: 100%;
-  margin: 0 20px;
-  background: rgba(255, 255, 255, 0.4);
+.Container .Month {
+  font-size: 16px;
+}
+
+.PhotoDetails {
+  color: #fff;
+}
+
+.PhotoDetails a {
+  color: #fff;
+}
+
+.PhotoDetails a:hover {
+  text-decoration: underline;
 }

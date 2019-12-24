@@ -17,7 +17,8 @@ function updateToNewBookmarks(bookmarks) {
 class AppContextProvider extends Component {
   state = {
     bookmarks: [],
-    editMode: false
+    editMode: false,
+    photo: { name: "", name_url: "", location: "" }
   };
 
   fetchBookmarks = () => {
@@ -46,14 +47,11 @@ class AppContextProvider extends Component {
 
   setBookmarks = _bookmarks => {
     let query = { bookmarks: _bookmarks };
-    try {
-      // eslint-disable-next-line
-      chrome.storage.sync.set(query, res => this.setState(query));
-    } catch (err) {
-      this.setState(query);
-      // attempt to update storage again
-    }
+    // eslint-disable-next-line
+    chrome.storage.sync.set(query, res => this.setState(query));
   };
+
+  setPhoto = details => this.setState({ photo: details });
 
   toggleEditMode = () => this.setState({ editMode: !this.state.editMode });
 
@@ -65,7 +63,9 @@ class AppContextProvider extends Component {
           fetchBookmarks: this.fetchBookmarks,
           setBookmarks: this.setBookmarks,
           editMode: this.state.editMode,
-          toggleEditMode: this.toggleEditMode
+          toggleEditMode: this.toggleEditMode,
+          photo: this.state.photo,
+          setPhoto: this.setPhoto
         }}
       >
         {this.props.children}

@@ -3,19 +3,7 @@
   z-index: 0;
   top: 0;
   left: 0;
-  height: 100vw;
-  width: 100vw;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-
-.Background {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  filter: blur(15px);
-  transform: scale(1.1);
 }
 
 .Overlay {
@@ -24,8 +12,13 @@
   left: 0;
   z-index: 1;
   background-color: var(--background-color);
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   opacity: 1;
   transition: all 750ms;
+}
+
+.Image {
+  width: 100vw;
+  height: 100vh;
 }

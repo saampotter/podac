@@ -4,30 +4,26 @@ import { AppContext } from "../../context";
 
 import classes from "./background.module.css";
 
-let fetchImageSrc = function() {
+let fetchImage = function() {
   return new Promise(resolve => {
     let backgroundCache = JSON.parse(localStorage.getItem("backgroundCache"));
 
     if (backgroundCache) {
       if (backgroundCache.urls.custom) {
-        return resolve(backgroundCache.urls.custom);
+        return resolve(backgroundCache);
       }
     }
 
-    fetchUnsplashImage().then(image => resolve(image.urls.custom));
+    fetchUnsplashImage().then(image => resolve(image));
   });
 };
 
 let fetchUnsplashImage = function() {
-  return new Promise(resolve => {
-    let w = `&w=${window.innerWidth}`;
-    let h = `&h=${window.innerHeight}`;
-    let url = `https://sampotter-eval-prod.apigee.net/podac?collections=3688490`;
+  let w = `&w=${window.innerWidth}`;
+  let h = `&h=${window.innerHeight}`;
+  let url = `https://sampotter-eval-prod.apigee.net/podac?collections=3688490`;
 
-    fetch(url + w + h)
-      .then(res => res.json())
-      .then(res => resolve(res));
-  });
+  return fetch(url + w + h).then(res => res.json());
 };
 
 let cacheNextImage = function() {
@@ -40,29 +36,31 @@ let cacheNextImage = function() {
 export default class Background extends React.Component {
   static contextType = AppContext;
 
-  componentDidMount() {
+  componentDidMount = () => {
     let img = new Image();
-    fetchImageSrc().then(src => {
-      img.src = src;
+    fetchImage().then(image => {
+      let src = image.urls.custom;
 
-      img.onload = function() {
-        document.getElementsByClassName(classes.Background)[0].src = src;
-        document.getElementsByClassName(classes.Overlay)[0].style.opacity = 0;
+      this.context.setPhoto({
+        name: image.user.name,
+        name_url: image.links.html,
+        location: image.location.name
+      });
+
+      img.onload = () => {
+        this.refs.image.src = src;
+        this.refs.overlay.style.opacity = 0;
         cacheNextImage();
       };
+      img.src = src;
     });
-  }
-
-  componentDidUpdate() {
-    let opacity = this.context.editMode ? 1 : 0;
-    document.getElementsByClassName(classes.Overlay)[0].style.opacity = opacity;
-  }
+  };
 
   render() {
     return (
       <div className={classes.Container}>
-        <div className={classes.Overlay} />
-        <img className={classes.Background} alt="" />
+        <div className={classes.Overlay} ref="overlay" />
+        <img ref="image" alt="" />
       </div>
     );
   }

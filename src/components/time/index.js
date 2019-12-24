@@ -1,42 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { AppContext } from "../../context";
 
 import classes from "./time.module.css";
 
-export default class Time extends React.Component {
-  static contextType = AppContext;
+export default function Time() {
+  let { photo } = useContext(AppContext);
+  let date = new Date();
 
-  componentDidUpdate() {
-    let height = this.context.editMode ? "120px" : "300px";
-    let opacity = this.context.editMode ? 0 : 1;
-    let container = document.getElementsByClassName(classes.Container)[0];
+  let month = date.toDateString();
+  month = month.slice(4, month.length - 5);
 
-    container.style.height = height;
-    container.style.opacity = opacity;
-  }
+  let hour = date.getHours();
+  let ampm = hour >= 12 ? "pm" : "am";
+  hour -= hour > 12 ? 12 : 0;
 
-  render() {
-    let date = new Date();
+  let minutes = date.getMinutes();
+  minutes = minutes < 10 ? "0" + minutes : minutes;
 
-    let month = date.toDateString();
-    month = month.slice(4, month.length - 5);
-
-    let hour = date.getHours();
-    let ampm = hour >= 12 ? "pm" : "am";
-    hour -= hour > 12 ? 12 : 0;
-
-    let minutes = date.getMinutes();
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-
-    return (
-      <div className={classes.Container}>
-        <div className={classes.Date}>
-          <span className={classes.Month}>{month}</span>
-          <span className={classes.Divider} />
-          <span className={classes.Time}>{`${hour}:${minutes} ${ampm}`}</span>
-        </div>
+  return (
+    <div className={classes.Container}>
+      <div>
+        <p className={classes.Time}>{`${hour}:${minutes} ${ampm}`}</p>
+        <p className={classes.Month}>{month}</p>
       </div>
-    );
-  }
+      <div className={classes.PhotoDetails}>
+        <span>
+          <a href={photo.name_url}>By {photo.name} on Unsplash</a>
+          {" | "}
+          <a href={`https://www.google.com/maps?q=${photo.location}`}>
+            {photo.location}
+          </a>
+        </span>
+      </div>
+    </div>
+  );
 }

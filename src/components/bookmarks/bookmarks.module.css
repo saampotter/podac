@@ -1,9 +1,9 @@
 .Container {
   position: relative;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 50px 40px;
-  padding: 0 80px 80px;
+  padding: 160px 40px;
   -webkit-transition: all 0.25s;
   transition: all 0.25s;
 }
