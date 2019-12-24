@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "chrome-extension",
+  "author": "Sam Potter, sam.potter@hotmail.com",
+  "version": "1.0.0",
+  "description": "Replace new tab screen extension.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["storage"]
+}

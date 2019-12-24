@@ -1,0 +1,54 @@
+.Card {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 160px;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: -5px 10px 60px -13px rgba(0, 0, 0, 0.2);
+}
+
+.Tilt {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transform-style: preserve-3d;
+}
+
+.Link {
+  display: block;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.Icon {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) translateZ(30px) perspective(1000px);
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.Title {
+  position: absolute;
+  top: calc(100% + 3px);
+  width: 100%;
+  font-weight: 700;
+  opacity: 0;
+  color: #fff;
+  transition: all 250ms;
+  z-index: 100;
+}
+
+.TitleDemo {
+  font-weight: 700;
+  z-index: 100;
+  color: #000;
+}
+
+.Tilt:hover + .Title {
+  opacity: 1;
+  transform: translateY(3px);
+}

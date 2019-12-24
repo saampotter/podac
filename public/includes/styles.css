@@ -1,0 +1,35 @@
+:root {
+  --background-color: #fff;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #fff;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: rgba(50, 54, 57, 1);
+  }
+}
+body {
+  overflow: hidden;
+  background: var(--background-color);
+}
+#Bookmarks_placeholder {
+  position: relative;
+  top: 300px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 50px 40px;
+  padding: 0 80px 80px 80px;
+}
+.Card_placeholder {
+  display: block;
+  border-radius: 20px;
+  background: #fff;
+  height: 160px;
+  width: 100%;
+}
+.sortable-ghost {
+  visibility: hidden;
+}
