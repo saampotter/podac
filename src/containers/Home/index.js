@@ -1,44 +1,37 @@
-import React from "react";
-import { AppContext } from "../../context/AppContext";
-import classes from "./Home.module.css";
-import Background from "../../components/Background";
-import Time from "../../components/Time";
-import Bookmarks from "../../components/Bookmarks";
+import React, { useContext, useEffect } from "react";
 import { Button } from "react-materialize";
-import BookmarksModal from "../../elements/BookmarksModal";
 
-export default class Home extends React.Component {
-  static contextType = AppContext;
+import { AppContext } from "../../context";
+import { Background, Time, Bookmarks } from "../../components";
 
-  componentDidMount() {
-    this.context.fetchBookmarks();
-  }
+import classes from "./home.module.css";
 
-  render() {
-    return (
-      <div>
-        <Background />
-        <div className={classes.ScrollContainer}>
-          <Button
-            floating
-            waves="light"
-            style={{
-              position: "absolute",
-              top: 30,
-              right: 30,
-              zIndex: 10,
-              background: "transparent",
-              boxShadow: "none"
-            }}
-            onClick={this.context.toggleEditMode}
-          >
-            <i className="material-icons">settings</i>
-          </Button>
-          <Time />
-          <Bookmarks />
-          <BookmarksModal />
-        </div>
+export default function Home(props) {
+  const { fetchBookmarks, toggleEditMode } = useContext(AppContext);
+  useEffect(fetchBookmarks, []);
+
+  return (
+    <div id="home">
+      <Background />
+      <div className={classes.ScrollContainer}>
+        <Button
+          floating
+          waves="light"
+          style={{
+            position: "absolute",
+            top: 30,
+            right: 30,
+            zIndex: 10,
+            background: "transparent",
+            boxShadow: "none"
+          }}
+          onClick={toggleEditMode}
+        >
+          <i className="material-icons">settings</i>
+        </Button>
+        <Time />
+        <Bookmarks />
       </div>
-    );
-  }
+    </div>
+  );
 }

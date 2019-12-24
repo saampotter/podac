@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Home from "./containers/Home";
-import { AppContextProvider } from "./context/AppContext";
+import Home from "./containers/home";
+import { AppContextProvider } from "./context";
 
-function App() {
-  return (
-    <AppContextProvider>
-      <Home />
-    </AppContextProvider>
-  );
-}
+const App = () => (
+  <AppContextProvider>
+    <Home />
+  </AppContextProvider>
+);
 
 ReactDOM.render(<App />, document.getElementById("root"));

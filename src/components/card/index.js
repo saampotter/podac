@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
-import Tilt from "react-tilt";
-import classes from "./card.module.css";
-import { AppContext } from "../../context/AppContext";
 import { Button } from "react-materialize";
+import Tilt from "react-tilt";
+
+import { AppContext } from "../../context";
+
+import classes from "./card.module.css";
 
 function DeleteButton(props) {
   let { bookmarks, setBookmarks } = useContext(AppContext);

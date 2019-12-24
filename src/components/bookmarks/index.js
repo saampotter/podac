@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import Sortable from "react-sortablejs";
-import { AppContext } from "../../context/AppContext";
-import classes from "./bookmarks.module.css";
+
+import { AppContext } from "../../context";
 import Card from "../card";
+
+import classes from "./bookmarks.module.css";
 
 function AddBookmarkCard(props) {
   let { toggleModal, setModal } = useContext(AppContext);

@@ -1,10 +1,12 @@
 import React from "react";
 import { TextInput } from "react-materialize";
 import { ChromePicker } from "react-color";
-import { AppContext } from "../../context/AppContext";
-import Card from "../Card";
+
+import { AppContext } from "../../context";
+import Card from "../card";
 import Button from "./Button";
-import classes from "./Bookmarks.module.css";
+
+import classes from "./modal.module.css";
 
 export default class BookmarksModal extends React.Component {
   static contextType = AppContext;

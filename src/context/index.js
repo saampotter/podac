@@ -1,6 +1,5 @@
 import React, { Component, createContext } from "react";
 import config from "../config";
-import classes from "../elements/BookmarksModal/Bookmarks.module.css";
 
 const AppContext = createContext();
 
@@ -18,9 +17,7 @@ function updateToNewBookmarks(bookmarks) {
 class AppContextProvider extends Component {
   state = {
     bookmarks: [],
-    editMode: false,
-    modalShown: false,
-    modalDetails: { title: "", link: "", color: "", icon: "" }
+    editMode: false
   };
 
   fetchBookmarks = () => {
@@ -54,58 +51,21 @@ class AppContextProvider extends Component {
       chrome.storage.sync.set(query, res => this.setState(query));
     } catch (err) {
       this.setState(query);
+      // attempt to update storage again
     }
   };
 
-  toggleEditMode = () => {
-    this.setState({ editMode: !this.state.editMode });
-  };
-
-  toggleModal = () => {
-    let c = document.getElementsByClassName(classes.Container)[0];
-    let m = document.getElementsByClassName(classes.Modal)[0];
-
-    if (this.state.modalShown) {
-      // close
-      /* eslint-disable */
-      gsap.to(m, 0.3, { autoAlpha: 0, top: 15 });
-      gsap.to(c, 0.3, { autoAlpha: 0 });
-      /* eslint-enable */
-      this.setState({ modalShown: false });
-    } else {
-      // open
-      /* eslint-disable */
-      gsap.to(c, 0.3, { autoAlpha: 1 });
-      gsap.fromTo(m, 0.3, { autoAlpha: 0, top: 15 }, { autoAlpha: 1, top: 0 });
-      /* eslint-enable */
-      this.setState({ modalShown: true });
-    }
-  };
-
-  setModal = bookmark => {
-    if (bookmark) {
-      if ("link" in bookmark) {
-        this.setState({ modalDetails: bookmark });
-      } else {
-        let d = { title: "", link: "", color: "", icon: "" };
-        this.setState({ modalDetails: d });
-      }
-    }
-  };
+  toggleEditMode = () => this.setState({ editMode: !this.state.editMode });
 
   render() {
     return (
       <AppContext.Provider
         value={{
-          editMode: this.state.editMode,
           bookmarks: this.state.bookmarks,
-          modalDetails: this.state.modalDetails,
-
           fetchBookmarks: this.fetchBookmarks,
           setBookmarks: this.setBookmarks,
-          toggleModal: this.toggleModal,
-          toggleEditMode: this.toggleEditMode,
-          setModal: this.setModal
+          editMode: this.state.editMode,
+          toggleEditMode: this.toggleEditMode
         }}
       >
         {this.props.children}
