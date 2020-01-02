@@ -1,12 +1,9 @@
 # Improvements
 
-- Add animations:
-  - Deleting a bookmark
-  - Adding a bookmark
-  - Changing editMode
-- Support dynamic image sizes from Unsplash
+- Ensure background image fits changing screen sizes
 - Improve default bookmarks to cater for older demographic
-- Convert all components to functional ones
+- Make icons fade in on load
+- Background content script that uses keyboard commands API to load bookmarks
 
 ## Description
 

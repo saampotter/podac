@@ -1,0 +1,62 @@
+.Container {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  visibility: hidden;
+}
+
+.Overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+.Modal {
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  background: #fff;
+  padding: 30px;
+  overflow-y: hidden;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* --- Footer --- */
+
+.Modal .Footer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Modal .Footer button {
+  box-shadow: none;
+}
+
+.Modal .Footer .CloseBtn {
+  color: var(--red);
+  background-color: var(--light-grey);
+}
+
+.Modal .Footer .SaveBtn {
+  background-color: var(--green);
+}
+
+.Modal .Footer .Disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

@@ -2,12 +2,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding: 40px;
   width: 100vw;
+  padding: 40px;
   z-index: 99;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .Container p {
@@ -26,10 +27,12 @@
 
 .PhotoDetails {
   color: #fff;
+  font-size: 15px;
 }
 
 .PhotoDetails a {
   color: #fff;
+  text-decoration: none;
 }
 
 .PhotoDetails a:hover {

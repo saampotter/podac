@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-
 import { AppContext } from "../../context";
-
 import classes from "./time.module.css";
 
 export default function Time() {
@@ -27,7 +25,7 @@ export default function Time() {
       <div className={classes.PhotoDetails}>
         <span>
           <a href={photo.name_url}>By {photo.name} on Unsplash</a>
-          {" | "}
+          {photo.location ? " | " : null}
           <a href={`https://www.google.com/maps?q=${photo.location}`}>
             {photo.location}
           </a>

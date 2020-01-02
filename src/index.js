@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import ReactDOM from "react-dom";
-import Home from "./containers/home";
-import { AppContextProvider } from "./context";
+import { AppContext, AppContextProvider } from "./context";
+import { Background, Bookmarks, Time } from "./components";
+
+function Home() {
+  const { fetchBookmarks } = useContext(AppContext);
+  useEffect(fetchBookmarks, []);
+
+  return (
+    <div id="home">
+      <Background />
+      <div id="scrollContainer">
+        <Time />
+        <Bookmarks />
+      </div>
+    </div>
+  );
+}
 
 const App = () => (
   <AppContextProvider>

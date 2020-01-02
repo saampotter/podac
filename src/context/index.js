@@ -18,7 +18,7 @@ class AppContextProvider extends Component {
   state = {
     bookmarks: [],
     editMode: false,
-    photo: { name: "", name_url: "", location: "" }
+    photo: { name: "", link: "", location: "" }
   };
 
   fetchBookmarks = () => {

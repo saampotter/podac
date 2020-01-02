@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import Sortable from "react-sortablejs";
-
 import { AppContext } from "../../context";
-import Card from "../card";
-
+import { Card, Button } from "..";
 import classes from "./bookmarks.module.css";
 
 function AddBookmarkCard(props) {
@@ -59,13 +57,19 @@ export default function Bookmarks() {
   }
 
   return (
-    <Sortable
-      options={{ animation: 250 }}
-      className={classes.Container}
-      onChange={handleMove}
-    >
-      <Cards />
-      {editMode ? <AddBookmarkCard /> : null}
-    </Sortable>
+    <div id="bookmarks">
+      <Sortable
+        options={{ animation: 250 }}
+        className={classes.Container}
+        onChange={handleMove}
+      >
+        <Cards />
+        {editMode ? <AddBookmarkCard /> : null}
+      </Sortable>
+      <Button className={classes.EditBtn}>
+        <img src="/icons/edit.svg" alt="" />
+        Edit bookmarks
+      </Button>
+    </div>
   );
 }

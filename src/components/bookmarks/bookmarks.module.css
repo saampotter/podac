@@ -7,3 +7,9 @@
   -webkit-transition: all 0.25s;
   transition: all 0.25s;
 }
+
+.EditBtn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}

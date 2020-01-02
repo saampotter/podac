@@ -1,0 +1,22 @@
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 43px;
+  padding: 0 20px;
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 9px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all var(--transition);
+  outline: none;
+  color: #000;
+}
+
+.Button img {
+  margin-right: 10px;
+  height: 22px;
+  width: 22px;
+}

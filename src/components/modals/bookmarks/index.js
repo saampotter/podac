@@ -2,32 +2,35 @@ import React from "react";
 import { TextInput } from "react-materialize";
 import { ChromePicker } from "react-color";
 
-import { AppContext } from "../../context";
-import Card from "../card";
+import { AppContext } from "../../../context";
+import Card from "../../card";
 import Button from "./Button";
 
 import classes from "./modal.module.css";
 
 export default class BookmarksModal extends React.Component {
   static contextType = AppContext;
-  state = { colorShown: false };
+  state = {
+    title: "",
+    link: "",
+    color: "",
+    icon: "",
+    colorShown: false
+  };
 
   handleSave = () => {
-    // let { title, link, color, icon } = this.state;
+    let { title, link, color, icon } = this.state;
 
-    console.log(this.context.modalDetails);
+    let _bookmarks = [
+      ...this.context.bookmarks,
+      { title: title, link: link, color: color, icon: icon }
+    ];
 
-    // let _bookmarks = [
-    //   ...this.context.bookmarks,
-    //   { title: title, link: link, color: color, icon: icon }
-    // ];
-
-    // this.context.setBookmarks(_bookmarks);
+    this.context.setBookmarks(_bookmarks);
   };
 
   render() {
-    let { setModal, modalDetails } = this.context;
-    let { colorShown } = this.state;
+    let { title, link, color, icon, colorShown } = this.state;
 
     return (
       <div className={classes.Container}>
@@ -49,20 +52,18 @@ export default class BookmarksModal extends React.Component {
                   noLayout
                   placeholder="Title"
                   onChange={e =>
-                    setModal({ ...modalDetails, title: e.currentTarget.value })
+                    this.setState({ title: e.currentTarget.value })
                   }
-                  value={modalDetails.title}
+                  value={title}
                 />
               </div>
               <div style={{ margin: "40px 0" }}>
                 <TextInput
                   label="Link"
                   noLayout
-                  onChange={e =>
-                    setModal({ ...modalDetails, link: e.currentTarget.value })
-                  }
+                  onChange={e => this.setState({ link: e.currentTarget.value })}
                   placeholder={"https://www.examplelink.com"}
-                  value={modalDetails.link}
+                  value={link}
                 />
               </div>
               <div style={{ margin: "40px 0 20px 0" }}>
@@ -70,11 +71,9 @@ export default class BookmarksModal extends React.Component {
                   label="Icon"
                   type="URL"
                   noLayout
-                  onChange={e =>
-                    setModal({ ...modalDetails, icon: e.currentTarget.value })
-                  }
+                  onChange={e => this.setState({ icon: e.currentTarget.value })}
                   placeholder={"https://www.imgur.com/example_icon"}
-                  value={modalDetails.icon}
+                  value={icon}
                 />
               </div>
               <div
@@ -86,8 +85,8 @@ export default class BookmarksModal extends React.Component {
               >
                 <ChromePicker
                   width={180}
-                  color={modalDetails.color}
-                  onChange={e => setModal({ ...modalDetails, color: e.hex })}
+                  color={color}
+                  onChange={e => this.setState({ color: e.hex })}
                 />
               </div>
             </div>
@@ -102,11 +101,7 @@ export default class BookmarksModal extends React.Component {
               }}
             >
               <Card
-                bookmark={{
-                  title: modalDetails.title,
-                  icon: modalDetails.icon,
-                  color: modalDetails.color
-                }}
+                bookmark={{ title: title, icon: icon, color: color }}
                 demo={true}
                 hideDelete={true}
               />

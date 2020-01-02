@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { Button } from "react-materialize";
 import Tilt from "react-tilt";
-
 import { AppContext } from "../../context";
-
 import classes from "./card.module.css";
 
 function DeleteButton(props) {
@@ -59,9 +57,9 @@ export default function Card(props) {
           <img className={classes.Icon} src={props.bookmark.icon} alt="" />
         </a>
       </Tilt>
-      <h6 className={props.demo ? classes.TitleDemo : classes.Title}>
+      <h3 className={props.demo ? classes.TitleDemo : classes.Title}>
         {props.bookmark.title}
-      </h6>
+      </h3>
     </div>
   );
 }
