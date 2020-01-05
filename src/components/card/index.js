@@ -41,8 +41,8 @@ export default function Card(props) {
         }}
       >
         <a
-          className={`${classes.Link} ${props.className}`}
-          href={props.bookmark.link}
+          className={c(classes.Link, props.className)}
+          href={editMode ? null : props.bookmark.link}
           style={{ backgroundColor: props.bookmark.color || "" }}
           onClick={props.onClick}
         >
