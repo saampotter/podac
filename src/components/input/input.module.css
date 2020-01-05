@@ -1,0 +1,9 @@
+.Input {
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 15px;
+  background: var(--light-grey);
+  outline: none;
+  font-size: 14px;
+}

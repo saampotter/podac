@@ -1,0 +1,93 @@
+/* ----------------- Header ------------------ */
+
+.Header .Title {
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.Header .Title::before {
+  content: "";
+  display: block;
+  position: relative;
+  width: 3px;
+  height: 50px;
+  background-color: var(--blue);
+  margin-right: 15px;
+}
+
+/* ----------------- Content ------------------ */
+
+.Content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Content .Left {
+  display: flex;
+  align-items: center;
+}
+
+.Content .Left .Center {
+  width: 100%;
+}
+
+.Content .Left .InputContainer {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.Content .Left .InputContainer p {
+  margin: 0 0 5px 0;
+}
+
+.Content .Left .InputContainer input {
+  width: 100%;
+}
+
+.Content .Right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 70px 0 130px;
+}
+
+.Content .ColorPicker {
+  position: absolute;
+  left: 185px;
+  bottom: 30px;
+}
+
+/* ----------------- Footer ------------------ */
+
+.Footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Footer .Color {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: none;
+}
+
+.Footer .BtnGroup {
+  display: flex;
+}
+
+.Footer .Close {
+  background: var(--light-grey);
+  color: var(--red);
+  box-shadow: none;
+}
+
+.Footer .Save {
+  background: var(--green);
+  color: #fff;
+  box-shadow: none;
+  margin-left: 15px;
+}

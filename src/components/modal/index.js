@@ -1,6 +1,5 @@
 import React from "react";
 import c from "classnames";
-
 import classes from "./modal.module.css";
 
 export default class Modal extends React.Component {
@@ -25,10 +24,6 @@ export default class Modal extends React.Component {
   };
 
   render() {
-    let disabledButtonClasses = this.props.formCompleted
-      ? c(classes.SaveBtn, "waves-effect waves-light")
-      : c(classes.SaveBtn, classes.Disabled);
-
     return (
       <div
         ref="container"
@@ -37,21 +32,6 @@ export default class Modal extends React.Component {
         <div className={classes.Overlay} />
         <div ref="modal" className={classes.Modal} style={this.props.style}>
           {this.props.children}
-          <div className={classes.Footer}>
-            <button
-              onClick={this.close}
-              className={c(classes.CloseBtn, "waves-effect")}
-            >
-              Close
-            </button>
-            <button
-              onClick={this.props.formCompleted ? this.props.save : null}
-              style={{ marginLeft: 20 }}
-              className={disabledButtonClasses}
-            >
-              {this.props.button}
-            </button>
-          </div>
         </div>
       </div>
     );

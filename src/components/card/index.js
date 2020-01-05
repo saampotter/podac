@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button } from "react-materialize";
+import c from "classnames";
 import Tilt from "react-tilt";
 import { AppContext } from "../../context";
 import classes from "./card.module.css";
@@ -16,20 +16,12 @@ function DeleteButton(props) {
   };
 
   return (
-    <Button
-      floating
-      waves="light"
+    <button
+      className={c(classes.DeleteButton, "waves-light")}
       onClick={_handleDelete}
-      style={{
-        position: "absolute",
-        top: -20,
-        right: -20,
-        backgroundColor: "red",
-        boxShadow: "none"
-      }}
     >
       <i className="material-icons">delete</i>
-    </Button>
+    </button>
   );
 }
 

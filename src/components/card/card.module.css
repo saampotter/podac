@@ -55,3 +55,21 @@
   opacity: 1;
   transform: translateY(3px);
 }
+
+.DeleteButton {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  z-index: 20;
+  height: 40px;
+  width: 40px;
+  background: red;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+}

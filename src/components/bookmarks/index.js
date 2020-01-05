@@ -1,27 +1,9 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import Sortable from "react-sortablejs";
 import { AppContext } from "../../context";
 import { Card, Button } from "..";
+import CreateBookmarkModal from "./CreateBookmarkModal";
 import classes from "./bookmarks.module.css";
-
-function AddBookmarkCard(props) {
-  let { toggleModal, setModal } = useContext(AppContext);
-
-  return (
-    <Card
-      bookmark={{
-        title: "Add bookmark",
-        color: "#18CC64",
-        icon: "/icons/add.png"
-      }}
-      hideDelete={true}
-      onClick={() => {
-        setModal();
-        toggleModal();
-      }}
-    />
-  );
-}
 
 function Cards(props) {
   let { editMode, bookmarks, toggleModal, setModal } = useContext(AppContext);
@@ -47,7 +29,8 @@ function Cards(props) {
 }
 
 export default function Bookmarks() {
-  let { editMode, setBookmarks } = useContext(AppContext);
+  const [createModal, setCreateModal] = useState(false);
+  let { editMode, toggleEditMode, setBookmarks } = useContext(AppContext);
 
   function handleMove(bookmarks) {
     let _bookmarks = bookmarks
@@ -64,12 +47,23 @@ export default function Bookmarks() {
         onChange={handleMove}
       >
         <Cards />
-        {editMode ? <AddBookmarkCard /> : null}
+        {editMode ? (
+          <Card
+            bookmark={{
+              title: "Add bookmark",
+              color: "#18CC64",
+              icon: "/icons/add.png"
+            }}
+            hideDelete={true}
+            onClick={e => setCreateModal(true)}
+          />
+        ) : null}
       </Sortable>
-      <Button className={classes.EditBtn}>
+      <Button onClick={toggleEditMode} className={classes.EditBtn}>
         <img src="/icons/edit.svg" alt="" />
         Edit bookmarks
       </Button>
+      {createModal ? <CreateBookmarkModal close={setCreateModal} /> : null}
     </div>
   );
 }
