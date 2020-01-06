@@ -8,6 +8,28 @@ let fetchImage = function() {
 
     if (backgroundCache) {
       if (backgroundCache.urls.custom) {
+        let url = backgroundCache.urls.custom;
+        let params = url.split("&");
+
+        for (let i = 0; i < params.length; i++) {
+          const param = params[i];
+
+          if (param.startsWith("w=")) {
+            let w = parseInt(param.substring(2, param.length));
+            if (w !== window.innerWidth) {
+              return fetchUnsplashImage().then(image => resolve(image));
+            }
+          }
+
+          if (param.startsWith("h=")) {
+            let h = parseInt(param.substring(2, param.length));
+            console.log(h, window.innerHeight);
+            if (h !== window.innerHeight) {
+              return fetchUnsplashImage().then(image => resolve(image));
+            }
+          }
+        }
+
         return resolve(backgroundCache);
       }
     }
@@ -58,7 +80,7 @@ export default class Background extends React.Component {
     return (
       <div className={classes.Container}>
         <div className={classes.Overlay} ref="overlay" />
-        <img ref="image" alt="" />
+        <img className={classes.Image} ref="image" alt="" />
       </div>
     );
   }

@@ -4,6 +4,7 @@
 - Improve default bookmarks to cater for older demographic
 - Make icons fade in on load
 - Background content script that uses keyboard commands API to load bookmarks
+- Fix color picker opacity
 
 ## Description
 
