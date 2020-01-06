@@ -1,11 +1,18 @@
 {
+  "name": "New Tab Page - Podac",
+  "version": "2.0.3",
+  "description": "An innovative solution to brighten up Chrome's new tab page. Featuring beautiful background images from Unsplash!",
+  "author": "Sam Potter",
   "manifest_version": 2,
-  "name": "chrome-extension",
-  "author": "Sam Potter, sam.potter@hotmail.com",
-  "version": "1.0.0",
-  "description": "Replace new tab screen extension.",
+  "offline_enabled": true,
   "chrome_url_overrides": {
-    "newtab": "index.html"
+    "newtab": "/index.html"
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "icons": {
+    "16": "/icons/16.png",
+    "32": "/icons/32.png",
+    "48": "/icons/48.png",
+    "128": "/icons/128.png"
+  }
 }
