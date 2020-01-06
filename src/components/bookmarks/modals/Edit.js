@@ -9,16 +9,27 @@ export default class EditBookmarkModal extends React.Component {
   constructor(props) {
     super(props);
     this.modal = React.createRef();
-    this.state = {
-      title: props.title,
-      link: props.link,
-      color: props.color,
-      icon: props.icon,
-      colorShown: false
-    };
+    let {
+      bookmark: { id, title, link, color, icon }
+    } = this.props;
+
+    this.state = { id, title, link, color, icon, colorShown: false };
   }
 
   handleSave = () => {
+    let { bookmarks, setBookmarks } = this.context;
+    let { id, title, link, color, icon } = this.state;
+
+    let _bookmarks = bookmarks.map(bookmark => {
+      if (bookmark.id === id) {
+        return { color, icon, id, link, title };
+      }
+
+      return bookmark;
+    });
+
+    setBookmarks(_bookmarks);
+
     this.modal.current.close();
   };
 

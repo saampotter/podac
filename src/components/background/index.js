@@ -1,7 +1,5 @@
 import React from "react";
-
 import { AppContext } from "../../context";
-
 import classes from "./background.module.css";
 
 let fetchImage = function() {

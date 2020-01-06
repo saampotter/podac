@@ -29,16 +29,13 @@ export default function Card(props) {
   let { editMode } = useContext(AppContext);
   let id = encodeURIComponent(JSON.stringify(props.bookmark));
 
+  /* eslint-disable */
   return (
     <div data-id={id} className={classes.Card}>
       {editMode && !props.hideDelete ? <DeleteButton /> : null}
       <Tilt
         className={classes.Tilt}
-        options={{
-          max: 20,
-          speed: 3000,
-          scale: 1.03
-        }}
+        options={{ max: 20, speed: 3000, scale: 1.03 }}
       >
         <a
           className={c(classes.Link, props.className)}

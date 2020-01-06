@@ -3,18 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.8.2",
     "classnames": "^2.2.6",
-    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-color": "^2.17.3",
     "react-dom": "^16.8.6",
-    "react-eyedropper": "^0.0.10",
-    "react-materialize": "^3.3.5",
     "react-scripts": "3.0.1",
     "react-sortablejs": "^1.5.1",
     "react-tilt": "^0.1.4",
-    "sortablejs": "^1.10.0-rc3"
+    "sortablejs": "^1.10.2",
+    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

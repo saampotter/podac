@@ -1,4 +1,5 @@
 import React from "react";
+import uuid from "uuid/v1";
 import { AppContext } from "../../../context";
 import Content from "./Content";
 import { Modal } from "../..";
@@ -13,7 +14,7 @@ export default class CreateBookmarkModal extends React.Component {
 
     let _bookmarks = [
       ...this.context.bookmarks,
-      { title: title, link: link, color: color, icon: icon }
+      { id: uuid(), title, link, color, icon }
     ];
 
     this.context.setBookmarks(_bookmarks);

@@ -8,7 +8,7 @@ import classes from "./bookmarks.module.css";
 
 export default class Bookmarks extends React.Component {
   static contextType = AppContext;
-  state = { createModal: false, editModal: false, editDetails: {} };
+  state = { createModal: false, editModal: false, bookmark: {} };
 
   handleMove = bookmarks => {
     const { setBookmarks } = this.context;
@@ -19,7 +19,7 @@ export default class Bookmarks extends React.Component {
   };
 
   render() {
-    const { createModal, editModal, editDetails } = this.state;
+    const { createModal, editModal, bookmark } = this.state;
     const { editMode, toggleEditMode, bookmarks } = this.context;
 
     return (
@@ -36,7 +36,7 @@ export default class Bookmarks extends React.Component {
               onClick={
                 editMode
                   ? () => {
-                      this.setState({ editDetails: bookmark, editModal: true });
+                      this.setState({ bookmark, editModal: true });
                     }
                   : null
               }
@@ -63,10 +63,7 @@ export default class Bookmarks extends React.Component {
         ) : null}
         {editModal ? (
           <Edit
-            title={editDetails.title}
-            link={editDetails.link}
-            color={editDetails.color}
-            icon={editDetails.icon}
+            bookmark={bookmark}
             close={() => this.setState({ editModal: false })}
           />
         ) : null}
