@@ -43,7 +43,7 @@ const Content = props => (
           </div>
         </div>
 
-        <div style={{ opacity: props.colorShown ? 1 : 0 }}>
+        <div style={{ visibility: props.colorShown ? "visible" : "hidden" }}>
           <ChromePicker
             width={160}
             color={props.bookmark.color}

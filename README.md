@@ -1,11 +1,3 @@
-# Improvements
-
-- Ensure background image fits changing screen sizes
-- Improve default bookmarks to cater for older demographic
-- Make icons fade in on load
-- Background content script that uses keyboard commands API to load bookmarks
-- Fix color picker opacity
-
 ## Description
 
 Brighten up your new tab page with beautiful images and bookmarks UI.

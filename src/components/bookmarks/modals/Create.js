@@ -6,18 +6,16 @@ import { Modal } from "../..";
 
 export default class CreateBookmarkModal extends React.Component {
   static contextType = AppContext;
-  state = { title: "", link: "", color: "", icon: "", colorShown: false };
+  state = { title: "", link: "", color: "#fff", icon: "", colorShown: false };
   modal = React.createRef();
 
   handleSave = () => {
     let { title, link, color, icon } = this.state;
+    let { bookmarks, setBookmarks } = this.context;
 
-    let _bookmarks = [
-      ...this.context.bookmarks,
-      { id: uuid(), title, link, color, icon }
-    ];
+    let _bookmarks = [...bookmarks, { id: uuid(), title, link, color, icon }];
 
-    this.context.setBookmarks(_bookmarks);
+    setBookmarks(_bookmarks);
     this.modal.current.close();
   };
 
