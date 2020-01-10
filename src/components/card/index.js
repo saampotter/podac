@@ -4,34 +4,44 @@ import Tilt from "react-tilt";
 import { AppContext } from "../../context";
 import classes from "./card.module.css";
 
-function DeleteButton(props) {
-  let { bookmarks, setBookmarks } = useContext(AppContext);
+class DeleteButton extends React.Component {
+  static contextType = AppContext;
 
-  const _handleDelete = event => {
-    let data = event.target.offsetParent.offsetParent.dataset.id;
-    let { title } = JSON.parse(decodeURIComponent(data));
+  componentDidMount() {
+    // eslint-disable-next-line
+    gsap.fromTo(this.refs.button, 0.3, { opacity: 0 }, { opacity: 1 });
+  }
 
-    let _bookmarks = bookmarks.filter(bookmark => bookmark.title !== title);
+  _handleDelete = event => {
+    const { bookmarks, setBookmarks } = this.context;
+    const data = event.target.offsetParent.offsetParent.dataset.id;
+    const { title } = JSON.parse(decodeURIComponent(data));
+
+    const _bookmarks = bookmarks.filter(bookmark => bookmark.title !== title);
     setBookmarks(_bookmarks);
   };
 
-  return (
-    <button
-      className={c(classes.DeleteButton, "waves-light")}
-      onClick={_handleDelete}
-    >
-      <i className="material-icons">delete</i>
-    </button>
-  );
+  render() {
+    return (
+      <button
+        className={c(classes.DeleteButton, "waves-light")}
+        style={{ opacity: 0 }}
+        onClick={this._handleDelete}
+        ref="button"
+      >
+        <i className="material-icons">delete</i>
+      </button>
+    );
+  }
 }
 
-export default function Card(props) {
+const Card = React.forwardRef((props, ref) => {
   let { editMode } = useContext(AppContext);
   let id = encodeURIComponent(JSON.stringify(props.bookmark));
 
   /* eslint-disable */
   return (
-    <div data-id={id} className={classes.Card}>
+    <div data-id={id} className={classes.Card} ref={ref}>
       {editMode && !props.hideDelete ? <DeleteButton /> : null}
       <Tilt
         className={classes.Tilt}
@@ -51,4 +61,6 @@ export default function Card(props) {
       </h3>
     </div>
   );
-}
+});
+
+export default Card;

@@ -7,6 +7,29 @@ import Create from "./modals/Create";
 import Edit from "./modals/Edit";
 import classes from "./bookmarks.module.css";
 
+class AddBookmark extends React.Component {
+  componentDidMount() {
+    // eslint-disable-next-line
+    gsap.fromTo(this.refs.card, 0.3, { opacity: 0 }, { opacity: 1 });
+  }
+
+  render() {
+    return (
+      <Card
+        bookmark={{
+          title: "Add bookmark",
+          color: "#18CC64",
+          icon: "/icons/add.png"
+        }}
+        style={{ opacity: 0 }}
+        ref="card"
+        hideDelete={true}
+        onClick={this.props.onClick}
+      />
+    );
+  }
+}
+
 export default class Bookmarks extends React.Component {
   static contextType = AppContext;
   state = { createModal: false, editModal: false, bookmark: {} };
@@ -44,15 +67,7 @@ export default class Bookmarks extends React.Component {
             />
           ))}
           {editMode ? (
-            <Card
-              bookmark={{
-                title: "Add bookmark",
-                color: "#18CC64",
-                icon: "/icons/add.png"
-              }}
-              hideDelete={true}
-              onClick={e => this.setState({ createModal: true })}
-            />
+            <AddBookmark onClick={e => this.setState({ createModal: true })} />
           ) : null}
         </Sortable>
         <Button

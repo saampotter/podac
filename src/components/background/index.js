@@ -81,7 +81,7 @@ export default class Background extends React.Component {
     const { editMode } = this.context;
     const opacity = editMode ? 0 : 1;
     // eslint-disable-next-line
-    gsap.to(this.refs.image, 0.2, { opacity });
+    gsap.to(this.refs.image, 0.3, { opacity });
   }
 
   render() {
