@@ -23,7 +23,6 @@ let fetchImage = function() {
 
           if (param.startsWith("h=")) {
             let h = parseInt(param.substring(2, param.length));
-            console.log(h, window.innerHeight);
             if (h !== window.innerHeight) {
               return fetchUnsplashImage().then(image => resolve(image));
             }
@@ -34,7 +33,7 @@ let fetchImage = function() {
       }
     }
 
-    fetchUnsplashImage().then(image => resolve(image));
+    return fetchUnsplashImage().then(image => resolve(image));
   });
 };
 
@@ -57,14 +56,16 @@ export default class Background extends React.Component {
   static contextType = AppContext;
 
   componentDidMount = () => {
-    let img = new Image();
-    fetchImage().then(image => {
-      let src = image.urls.custom;
+    const { setPhoto } = this.context;
 
-      this.context.setPhoto({
-        name: image.user.name,
-        name_url: image.links.html,
-        location: image.location.name
+    let img = new Image();
+    fetchImage().then(unsplash => {
+      let src = unsplash.urls.custom;
+
+      setPhoto({
+        name: unsplash.user.name,
+        name_url: unsplash.links.html,
+        location: unsplash.location.name
       });
 
       img.onload = () => {
@@ -75,6 +76,13 @@ export default class Background extends React.Component {
       img.src = src;
     });
   };
+
+  componentDidUpdate() {
+    const { editMode } = this.context;
+    const opacity = editMode ? 0 : 1;
+    // eslint-disable-next-line
+    gsap.to(this.refs.image, 0.2, { opacity });
+  }
 
   render() {
     return (

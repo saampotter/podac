@@ -7,7 +7,19 @@ class AppContextProvider extends Component {
   state = {
     bookmarks: [],
     editMode: false,
+    modalOpen: false,
     photo: { name: "", link: "", location: "" }
+  };
+
+  componentDidMount() {
+    window.addEventListener("keydown", this._handleKeyPress, false);
+  }
+
+  _handleKeyPress = ({ key }) => {
+    const { editMode, modalOpen } = this.state;
+    if (key === "Escape" && editMode && !modalOpen) {
+      this.toggleEditMode();
+    }
   };
 
   fetchBookmarks = () => {
@@ -43,6 +55,8 @@ class AppContextProvider extends Component {
 
   toggleEditMode = () => this.setState({ editMode: !this.state.editMode });
 
+  toggleModalOpen = () => this.setState({ modalOpen: !this.state.modalOpen });
+
   render() {
     return (
       <AppContext.Provider
@@ -53,7 +67,9 @@ class AppContextProvider extends Component {
           editMode: this.state.editMode,
           toggleEditMode: this.toggleEditMode,
           photo: this.state.photo,
-          setPhoto: this.setPhoto
+          setPhoto: this.setPhoto,
+          modalOpen: this.state.modalOpen,
+          toggleModalOpen: this.toggleModalOpen
         }}
       >
         {this.props.children}

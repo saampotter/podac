@@ -1,4 +1,5 @@
 .Container {
+  display: block;
   position: fixed;
   z-index: 0;
   top: 0;
@@ -14,11 +15,11 @@
   background-color: var(--background-color);
   width: 100vw;
   height: 100vh;
-  opacity: 1;
   transition: all 750ms;
 }
 
 .Image {
   min-width: 100vw;
   min-height: 100vh;
+  opacity: 0;
 }

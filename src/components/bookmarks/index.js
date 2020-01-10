@@ -1,4 +1,5 @@
 import React from "react";
+import c from "classnames";
 import Sortable from "react-sortablejs";
 import { AppContext } from "../../context";
 import { Card, Button } from "..";
@@ -54,7 +55,10 @@ export default class Bookmarks extends React.Component {
             />
           ) : null}
         </Sortable>
-        <Button onClick={toggleEditMode} className={classes.EditBtn}>
+        <Button
+          onClick={toggleEditMode}
+          className={c("waves-effect waves-dark", classes.EditBtn)}
+        >
           <img src="/icons/edit.svg" alt="" />
           Edit bookmarks
         </Button>

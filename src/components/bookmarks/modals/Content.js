@@ -66,16 +66,22 @@ const Content = props => (
     </div>
     <div className={classes.Footer}>
       <Button
-        className={classes.Color}
+        className={c("waves-effect", classes.Color)}
         onClick={e => props.update({ colorShown: !props.colorShown })}
       >
         <span>Select Colour</span>
       </Button>
       <div className={classes.BtnGroup}>
-        <Button className={classes.Close} onClick={props.handleClose}>
+        <Button
+          className={c("waves-effect", classes.Close)}
+          onClick={props.handleClose}
+        >
           Close
         </Button>
-        <Button className={classes.Save} onClick={props.handleSave}>
+        <Button
+          className={c("waves-effect", classes.Save)}
+          onClick={props.handleSave}
+        >
           Save
         </Button>
       </div>
