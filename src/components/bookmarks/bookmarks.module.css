@@ -13,3 +13,7 @@
   bottom: 30px;
   right: 30px;
 }
+
+.EditBtn i {
+  margin-right: 10px;
+}

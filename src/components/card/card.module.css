@@ -42,7 +42,6 @@
   opacity: 0;
   color: #fff;
   transition: all 250ms;
-  z-index: 100;
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   margin: 8px 0 0 0;
   font-size: 18px;
@@ -56,7 +55,6 @@
   opacity: 1;
   color: #000;
   transition: all 250ms;
-  z-index: 100;
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   margin: 8px 0 0 0;
   font-size: 18px;
@@ -69,9 +67,9 @@
 
 .DeleteButton {
   position: absolute;
+  z-index: 10;
   top: -20px;
   right: -20px;
-  z-index: 20;
   height: 40px;
   width: 40px;
   background: red;
@@ -83,4 +81,32 @@
   justify-content: center;
   cursor: pointer;
   outline: none;
+}
+
+.Edit {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(31px) perspective(1000px);
+  color: #000;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity var(--transition) 300ms;
+  font-size: 16px;
+}
+
+.Edit:hover {
+  opacity: 1;
+  transition: opacity var(--transition);
+}
+
+.Edit i {
+  margin-right: 10px;
+  color: var(--blue);
 }

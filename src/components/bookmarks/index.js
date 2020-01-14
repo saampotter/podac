@@ -10,7 +10,7 @@ import classes from "./bookmarks.module.css";
 class AddBookmark extends React.Component {
   componentDidMount() {
     // eslint-disable-next-line
-    gsap.fromTo(this.refs.card, 0.3, { opacity: 0 }, { opacity: 1 });
+    gsap.fromTo(this.refs.card, 0.3, { autoAlpha: 0 }, { autoAlpha: 1 });
   }
 
   render() {
@@ -74,8 +74,13 @@ export default class Bookmarks extends React.Component {
           onClick={toggleEditMode}
           className={c("waves-effect waves-dark", classes.EditBtn)}
         >
-          <img src="/icons/edit.svg" alt="" />
-          Edit bookmarks
+          <i
+            style={{ color: editMode ? "#ff3e3e" : "#1157ed" }}
+            className="material-icons"
+          >
+            {editMode ? "close" : "edit"}
+          </i>
+          {editMode ? "Close" : "Edit bookmarks"}
         </Button>
         {createModal ? (
           <Create close={() => this.setState({ createModal: false })} />
