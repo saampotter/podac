@@ -2,8 +2,8 @@ import React from "react";
 import { AppContext } from "../../context";
 import classes from "./background.module.css";
 
-let fetchImage = function() {
-  return new Promise(resolve => {
+let fetchImage = function () {
+  return new Promise((resolve) => {
     let backgroundCache = JSON.parse(localStorage.getItem("backgroundCache"));
 
     if (backgroundCache) {
@@ -17,14 +17,14 @@ let fetchImage = function() {
           if (param.startsWith("w=")) {
             let w = parseInt(param.substring(2, param.length));
             if (w !== window.innerWidth) {
-              return fetchUnsplashImage().then(image => resolve(image));
+              return fetchUnsplashImage().then((image) => resolve(image));
             }
           }
 
           if (param.startsWith("h=")) {
             let h = parseInt(param.substring(2, param.length));
             if (h !== window.innerHeight) {
-              return fetchUnsplashImage().then(image => resolve(image));
+              return fetchUnsplashImage().then((image) => resolve(image));
             }
           }
         }
@@ -33,20 +33,20 @@ let fetchImage = function() {
       }
     }
 
-    return fetchUnsplashImage().then(image => resolve(image));
+    return fetchUnsplashImage().then((image) => resolve(image));
   });
 };
 
-let fetchUnsplashImage = function() {
+let fetchUnsplashImage = function () {
   let w = `&w=${window.innerWidth}`;
   let h = `&h=${window.innerHeight}`;
-  let url = `https://sampotter-eval-prod.apigee.net/podac?collections=3688490`;
+  let url = `https://z9t1ivooqc.execute-api.ap-southeast-2.amazonaws.com/dev/image?w=1440&h=300`;
 
-  return fetch(url + w + h).then(res => res.json());
+  return fetch(url + w + h).then((res) => res.json());
 };
 
-let cacheNextImage = function() {
-  fetchUnsplashImage().then(image => {
+let cacheNextImage = function () {
+  fetchUnsplashImage().then((image) => {
     localStorage.setItem("backgroundCache", JSON.stringify(image));
     fetch(image.urls.custom); // save to chrome cache
   });
@@ -59,13 +59,13 @@ export default class Background extends React.Component {
     const { setPhoto } = this.context;
 
     let img = new Image();
-    fetchImage().then(unsplash => {
+    fetchImage().then((unsplash) => {
       let src = unsplash.urls.custom;
 
       setPhoto({
         name: unsplash.user.name,
         name_url: unsplash.links.html,
-        location: unsplash.location.name
+        location: unsplash.location.name,
       });
 
       img.onload = () => {
